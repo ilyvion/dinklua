@@ -24,8 +24,90 @@ function use_item(base_seq, use_wait, sound_number)
   player.frame = 1 -- reset seq to 1st frame
   player:kill_wait() -- make sure dink will play the animaition right away
   player.nocontrol = true -- dink can't move until anim is done!
+  if use_wait ~= nil then
+    dink.wait(use_wait)
+  end
+  if sound_number ~= nil then
+    dink.playsound(sound_number, 8000, 0, nil, false)
+  end
+end
+
+function use_magic_item(base_seq, use_wait)
+  use_item(base_seq, nil, nil)
+  global.magic_level = 0
+  dink.draw_status()
   dink.wait(use_wait)
-  dink.playsound(sound_number, 8000, 0, nil, false)
+end
+
+function use_magic_projectile(p_direction, base_seq, sound_number, damage_script)
+  local mholdx, mholdy = player.x, player.y
+  local seq, mx, my, dir
+  if p_direction == direction.SOUTH_WEST then
+    mholdx = mholdx - 30
+    seq = base_seq + 4
+    mx = -6
+    my = 2
+  elseif p_direction == direction.WEST then
+    mholdx = mholdx - 30
+    seq = base_seq + 4
+    dir = 4
+  elseif p_direction == direction.NORTH_WEST then
+    mholdx = mholdx - 30
+    seq = base_seq + 4
+    mx = -6
+    my = -2
+  elseif p_direction == direction.NORTH then
+    seq = base_seq + 8
+    dir = 8
+  elseif p_direction == direction.NORTH_EAST then
+    mholdx = mholdx + 30
+    seq = base_seq + 6
+    mx = 6
+    my = -2
+  elseif p_direction == direction.EAST then
+    mholdx = mholdx + 30
+    seq = base_seq + 6
+    dir = 6
+  elseif p_direction == direction.SOUTH_EAST then
+    mholdx = mholdx + 30
+    seq = base_seq + 6
+    mx = 6
+    my = 2
+  elseif p_direction == direction.SOUTH then
+    seq = base_seq + 2
+    dir = 2
+  end
+  local junk = dink.create_sprite(mholdx, mholdy, brain.MISSILE, seq, 1)
+  junk.seq = seq
+  if mx ~= nil then
+    junk.mx = mx
+    junk.my = my
+  else
+    junk.dir = dir
+  end
+
+  -- create fake shadow effect
+  dink.playsound(sound_number, 8000, 0, junk, false)
+  
+  junk.timing = 0
+  junk.speed = 6
+  junk.strength = 10
+  junk.range = 10
+  -- this makes it easier to hit stuff
+  junk.flying = true
+  junk.script = damage_script
+  --[[
+    when the missile hits something, it will look to this script, this way
+    we can, e.g., burn trees when appropriate
+  ]]
+  local mshadow = dink.create_sprite(mholdx, mholdy, brain.SHADOW, 432, 3)
+  mshadow.brain_parm = junk.sprite_number
+  mshadow.que = -500
+  -- will be drawn under everything
+
+  -- set missile to not be able to damage Dink or the shadow
+  junk.brain_parm = 1
+  junk.brain_parm2 = mshadow.sprite_number
 end
 
 -- Used from bar-e.lua, bar-sh.lua and bar-f1.lua
@@ -100,4 +182,3 @@ function open_chest(chest_sprite, make_item, make_item_arg)
   
   dink.kill_this_task()
 end
-
