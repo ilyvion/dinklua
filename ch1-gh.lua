@@ -9,6 +9,5 @@ function main()
 end
 
 function hit()
-  items.open_chest(current_sprite, "gheart")
+  items.open_chest(current_sprite, 175, 4, "gheart")
 end
-

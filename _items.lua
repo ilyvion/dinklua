@@ -148,16 +148,16 @@ function break_barrel(barrel_sprite, make_item, make_item_arg)
   dink.kill_this_task()
 end
 
--- Used from ch1-gh.lua
-function open_chest(chest_sprite, make_item, make_item_arg)
+-- Used from ch*.lua
+function open_chest(chest_sprite, chest_seq, chest_frame, make_item, make_item_arg)
   -- play noise
   
   local hold = chest_sprite.editor_sprite
   if hold ~= nil then
     -- this was placed by the editor, lets make the chest stay open
     hold.type = editor_type.DRAW_WITH_HARDNESS
-    hold.seq = 175
-    hold.frame = 4
+    hold.seq = chest_seq
+    hold.frame = chest_frame
   end
   
   if make_item ~= nil then
@@ -174,11 +174,10 @@ function open_chest(chest_sprite, make_item, make_item_arg)
     end
   end
   
-  chest_sprite.seq = 175
+  chest_sprite.seq = chest_seq
   chest_sprite.script = ""
   chest_sprite.notouch = true
   chest_sprite.nohit = true
-  chest_sprite.script = ""
   
   dink.kill_this_task()
 end
