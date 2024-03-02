@@ -1,16 +1,14 @@
 function main()
   if global.wizard_see == 2 then
     current_sprite:say("`0How goes the hunt Dink?")
-    return
   elseif global.wizard_see == 3 then
     current_sprite.active = false
     player:say("He's gone!!")
-    return
   elseif global.wizard_see == 4 then
     curent_sprite.active = false
-    return
+  else
+    current_sprite:say("`0Ahh Dink, I've been expecting you.")
   end
-  current_sprite:say("`0Ahh Dink, I've been expecting you.")
 end
   
 local choice_menu = dink.create_choice_menu()
@@ -66,6 +64,7 @@ function talk()
         "I promise I'll be honorable and learn to use it right."
       },
       "Well Dink, you must prove yourself.",
+      "Ah man, how do I do that?",
       {
         "Well in a cave on these hills, there lies a beast.",
         "It's called a Bonca.  Slay it and return."
@@ -102,4 +101,3 @@ function hit()
   current_sprite:say("`0Why are you trying to hurt me Dink?")
   -- Warp the Wizard elsewhere
 end
-
