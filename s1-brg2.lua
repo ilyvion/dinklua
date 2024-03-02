@@ -14,7 +14,7 @@ end
 function hit()
   current_sprite:say("`3Did something touch me?  A fly perhaps?")
 end
-  
+
 local choice_menu = dink.create_choice_menu()
 choice_menu.y = 240
 choice_menu.title_color = 3
@@ -41,7 +41,7 @@ function talk()
       current_sprite:move_stop(direction.WEST, -50, true)
       global.story = 7
       player:unfreeze()
-      dumb.hard = 1
+      dumb.hard = true
       dink.force_vision(0)
       dink.kill_this_task()
       return
@@ -60,5 +60,5 @@ function talk()
       {"ufz", "d"}
     })
   end
+  player:unfreeze()
 end
-
