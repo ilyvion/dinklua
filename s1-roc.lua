@@ -27,7 +27,7 @@ function push()
   elseif global.rock_placement == 1 and player.dir == direction.WEST then
     player:say("..heavy..heavy..")
     player:freeze()
-    player:move_stop(direction.WEST, 285, true)
+    current_sprite:move_stop(direction.WEST, 285, true)
     player:unfreeze()
     dink.draw_hard_map()
     global.rock_placement = 0
@@ -35,4 +35,3 @@ function push()
     player:say("It won't budge from this angle.")
   end
 end
-
