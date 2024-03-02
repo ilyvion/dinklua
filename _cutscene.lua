@@ -110,6 +110,8 @@ The commands supported out of the box are:
     north-west, north and north-east directions, respectively. For the
     non-stop version of move, substitute "mvX" for "msX".
   
+  - {"k", actor}. This sets actor.active = 0, i.e. kills their sprite.
+  
   - {"fdu"} and {"fdd"}. fade_up() and fade_down().
   
   - {"fz", actor} and {"ufz", actor}. actor:freeze() and actor:unfreeze().
@@ -352,6 +354,9 @@ function create_cutscene(default_wait, default_ih)
         elseif command == "ufz" then
           actor:unfreeze()
           self:wait()
+        elseif command == "k" then
+          actor.active = false
+          self:wait()
         elseif command == "fn" and type(arg[2]) == "function" then
           arg[2](actor)
           self:wait()
@@ -483,4 +488,3 @@ function create_cutscene(default_wait, default_ih)
     end
   }
 end
-
