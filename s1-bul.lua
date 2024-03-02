@@ -1,12 +1,11 @@
+local misc = include("_misc")
+
 function main()
   current_sprite.speed = 2
   current_sprite.timing = 0
   current_sprite.base_walk = 400
 
-  dink.preload_seq(401)
-  dink.preload_seq(403)
-  dink.preload_seq(407)
-  dink.preload_seq(409)
+  misc.preload_diagonal_seq(400)
   
   if global.pig_story == 0 then
     local cs = cutscene.create_cutscene(200, true)
@@ -36,4 +35,3 @@ function main()
     global.pig_story = 1
   end
 end
-

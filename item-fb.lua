@@ -1,4 +1,5 @@
 local items = include("_items")
+local misc = include("_misc")
 
 function use()
   local mydir = player.dir
@@ -17,14 +18,8 @@ function arm()
   dink.debug("Preloading fireball")
 
   global.magic_cost = 100
-  dink.preload_seq(322)
-  dink.preload_seq(324)
-  dink.preload_seq(326)
-  dink.preload_seq(328)
-  dink.preload_seq(502)
-  dink.preload_seq(504)
-  dink.preload_seq(506)
-  dink.preload_seq(508)
+  misc.preload_cardinal_seq(320)
+  misc.preload_cardinal_seq(500)
   
   -- tree burn
   dink.preload_seq(20)

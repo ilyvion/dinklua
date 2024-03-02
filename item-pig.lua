@@ -1,6 +1,7 @@
 -- item pig food
 
 local items = include("_items")
+local misc = include("_misc")
 
 function use()
   local dir = player.dir
@@ -67,10 +68,7 @@ function arm()
   dink.init([[load_sequence_now graphics\dink\idle\ds-i6- 16 250 36 70 -11 -9 11 9]])
   dink.init([[load_sequence_now graphics\dink\idle\ds-i8- 18 250 32 68 -12 -9 12 9]])
 
-  dink.preload_seq(522)
-  dink.preload_seq(524)
-  dink.preload_seq(526)
-  dink.preload_seq(528)
+  misc.preload_cardinal_seq(520)
   dink.preload_seq(430)
   dink.preload_seq(431)
 end
@@ -82,4 +80,3 @@ end
 function drop()
   dink.kill_this_task()
 end
-

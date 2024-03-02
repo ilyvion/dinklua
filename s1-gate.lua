@@ -1,11 +1,10 @@
+local misc = include("_misc")
+
 function main()
   if global.little_girl < 2 then
     local ran = dink.random(2, 1)
     if ran == 1 then
-      dink.preload_seq(331)
-      dink.preload_seq(333)
-      dink.preload_seq(337)
-      dink.preload_seq(339)
+      misc.preload_diagonal_seq(330)
       
       local girl = dink.create_sprite(630, 180, brain.MONSTER_DIAGONAL, 331, 4)
       girl.script = "s1-lg"
@@ -20,4 +19,3 @@ function main()
     global.vision = 1
   end
 end
-

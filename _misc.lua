@@ -1,5 +1,10 @@
 --[[
 Miscellaneous helper code that doesn't really fit in with other code
+
+Use like this, e.g.:
+
+local misc = include("_misc")
+make.preload_diagonal_seq(500)
 --]]
 
 function show_savegame_menu(hide_nevermind)
@@ -45,3 +50,9 @@ function preload_diagonal_seq(base)
   dink.preload_seq(base + 9)
 end
 
+function preload_cardinal_seq(base)
+  dink.preload_seq(base + 2)
+  dink.preload_seq(base + 4)
+  dink.preload_seq(base + 6)
+  dink.preload_seq(base + 8)
+end
