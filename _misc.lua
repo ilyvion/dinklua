@@ -4,7 +4,7 @@ Miscellaneous helper code that doesn't really fit in with other code
 Use like this, e.g.:
 
 local misc = include("_misc")
-make.preload_diagonal_seq(500)
+misc.preload_diagonal_seq(500)
 --]]
 
 function show_savegame_menu(hide_nevermind)
