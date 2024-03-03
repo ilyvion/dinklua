@@ -1,3 +1,5 @@
+local misc = include("_misc")
+
 function main()
   dink.preload_seq(452)
 end
@@ -15,10 +17,5 @@ function touch()
   player.brain = brain.NONE
   dink.wait(2000)
   player.brain = brain.PLAYER
-  global.player_map = 131
-  player.x = 289
-  player.y = 377
-  dink.load_screen(131)
-  dink.draw_screen()
+  misc.teleport(131, 289, 377)
 end
-

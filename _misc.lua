@@ -56,3 +56,11 @@ function preload_cardinal_seq(base)
   dink.preload_seq(base + 6)
   dink.preload_seq(base + 8)
 end
+
+function teleport(map, x, y)
+  global.player_map = map
+  player.x = x
+  player.y = y
+  dink.load_screen(map)
+  dink.draw_screen()
+end

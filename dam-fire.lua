@@ -10,18 +10,17 @@ function damage()
   mcrap = mcrap - 35
   scrap.y = mcrap
 
-  local mtarget = dink.get_sprite(global.missile_target)
-  mcrap = mtarget.pseq
-  scrap = mtarget.pframe
-  local hold = mtarget.editor_sprite
+  mcrap = missile_target.pseq
+  scrap = missile_target.pframe
+  local hold = missile_target.editor_sprite
 
   if mcrap == 32 then
     if scrap == 1 then
       -- they hit a tree, lets burn the thing
-      mtarget.hard = true
-      mtarget:draw_hard()
+      missile_target.hard = true
+      missile_target:draw_hard()
 
-      local junk = dink.is_script_attached(global.missile_target)
+      local junk = missile_target.script_attached
       if junk > 0 then
         dink.run_script_by_number(junk, "die")
         return
@@ -35,12 +34,12 @@ function damage()
         -- type means show this seq/frame combo as background in the future
       end
 
-      mtarget.pseq = 20
-      mtarget.pframe = 29
-      mtarget.hard = false
-      mtarget:draw_hard()
-      mtarget.seq = 20
-      dink.playsound(6, 8000, 0, mtarget, false)
+      missile_target.pseq = 20
+      missile_target.pframe = 29
+      missile_target.hard = false
+      missile_target:draw_hard()
+      missile_target.seq = 20
+      dink.playsound(6, 8000, 0, missile_target, false)
     end
   end
 end

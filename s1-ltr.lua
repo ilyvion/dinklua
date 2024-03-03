@@ -1,3 +1,5 @@
+local misc = include("_misc")
+
 function main()
   local cs = cutscene.create_cutscene(250)
   cs:add_participant("l", current_sprite, "2")
@@ -36,15 +38,10 @@ function main()
   dink.fade_down()
   dink.fill_screen(0)
   --move Dink
-  global.player_map = 439
-  player.x = 362
-  player.y = 303
-  dink.load_screen()
-  dink.draw_screen()
+  misc.teleport(439, 362, 303)
   dink.draw_status()
   dink.fade_up()
   player:unfreeze()
   
   dink.kill_this_task()
 end
-
