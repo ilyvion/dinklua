@@ -181,3 +181,17 @@ function open_chest(chest_sprite, chest_seq, chest_frame, make_item, make_item_a
   
   dink.kill_this_task()
 end
+
+function check_has_free_items()
+  local junk = dink.free_items()
+  if junk < 1 then
+    local choice_menu = dink.create_choice_menu()
+    choice_menu.y = 240
+    choice_menu.title = "You are carrying too much."
+    choice_menu:add_choice("Ok")
+    choice_menu:show()
+    return false
+  else
+    return true
+  end
+end
