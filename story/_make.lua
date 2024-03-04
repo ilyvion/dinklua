@@ -44,6 +44,10 @@ function apotion(x, y)
   create(x, y, 178, 4, "apotion")
 end
 
+function papgold(x, y)
+  create(x, y, 178, 4, "papgold")
+end
+
 function gold200(x, y)
   create(x, y, 178, 4, "gold200")
 end
@@ -84,4 +88,3 @@ function foodduck(x, y)
   
   --crap.script = "sfood"
 end
-
