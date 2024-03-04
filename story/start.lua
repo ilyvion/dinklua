@@ -69,15 +69,30 @@ function main()
   
   local dinklogo = create_sprite(320, 240, brain.NONE, 196, 1)
 
-  local version = dink.get_version()
-  if version < 103 then
-    --can't play with old .exe, not all command are supported
-    dink.say_xy("`4Error - Scripts require version V1.03+ of dink.exe.  Upgrade!", 0, 390)
+  local truecolor = dink.get_truecolor()
+  if truecolor ~= 1 then
+    dink.say_xy("`4Error - Lua version requires True color mode! Restart game with -truecolor argument.", 0, 390)
     dink.wait(1)
-    dink.wait(5000)
+    dink.wait(10000)
     dink.kill_game()
     return
   end
+
+  local lualogo = create_sprite(320, 385, brain.NONE, 98, 1)
+  lualogo.noclip = true
+
+  -- Considering we need DinkLua support to even run, this is rather outdated code at this point.
+  -- Leaving it in as a comment for completeness.
+  --
+  -- local version = dink.get_version()
+  -- if version < 103 then
+  --   --can't play with old .exe, not all command are supported
+  --   dink.say_xy("`4Error - Scripts require version V1.03+ of dink.exe.  Upgrade!", 0, 390)
+  --   dink.wait(1)
+  --   dink.wait(5000)
+  --   dink.kill_game()
+  --   return
+  -- end
   
   local crap = create_sprite(76, 40, brain.BUTTON, 194, 1)
   crap.script = "start-1"
@@ -102,4 +117,3 @@ function main()
   dink.playmidi("1003.mid")
   dink.kill_this_task()
 end
-
