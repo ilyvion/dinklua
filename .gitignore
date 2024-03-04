@@ -1,1 +1,5 @@
 ﻿*.c
+DEBUG.TXT
+library.dat
+save*.dat
+wdep2.*
