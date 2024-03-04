@@ -43,6 +43,17 @@ function show_button_menu()
   end
 end
 
+function show_dialog(message, y, choice_text)
+  y = y or 240
+  choice_text = choice_text or "Ok"
+
+  local choice_menu = dink.create_choice_menu()
+  choice_menu.y = y
+  choice_menu.title = message
+  choice_menu:add_choice(choice_text)
+  choice_menu:show()
+end
+
 function preload_diagonal_seq(base)
   dink.preload_seq(base + 1)
   dink.preload_seq(base + 3)
@@ -63,4 +74,23 @@ function teleport(map, x, y)
   player.y = y
   dink.load_screen(map)
   dink.draw_screen()
+end
+
+function sparkle_around(sprite)
+  local myx, myy = sprite.x, sprite.y - 60
+  local mcrap = dink.create_sprite(myx, myy, brain.REPEAT, 169, 1)
+  mcrap.seq = 169
+  mcrap.script = "shrink"
+
+  myx, myy = myx - 30, myy - 30
+  local dcrap = dink.create_sprite(myx, myy, brain.REPEAT, 169, 3)
+  dcrap.seq = 169
+  dcrap.frame = 3
+  dcrap.script = "shrink"
+
+  myx, myy = myx + 60, myy + 10
+  local rcrap = dink.create_sprite(myx, myy, brain.REPEAT, 169, 6)
+  rcrap.seq = 169
+  rcrap.frame = 6
+  rcrap.script = "shrink"
 end

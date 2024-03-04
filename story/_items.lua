@@ -5,6 +5,7 @@ items and equipped items) share.
 
 -- We'll make use of the make functions, so let's import them.
 local make = include("_make")
+local misc = include("_misc")
 
 --[[
 Common use-item code. Restricts the player's direction to non-diagonal
@@ -194,11 +195,7 @@ end
 function check_has_free_items()
   local junk = dink.free_items()
   if junk < 1 then
-    local choice_menu = dink.create_choice_menu()
-    choice_menu.y = 240
-    choice_menu.title = "You are carrying too much."
-    choice_menu:add_choice("Ok")
-    choice_menu:show()
+    misc.show_dialog("You are carrying too much.")
     return false
   else
     return true
