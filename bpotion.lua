@@ -3,10 +3,10 @@
 local items = include("_items")
 
 function main()
-  items.pulsate_item(52)
+  items.pulsate_item(55)
 end
 
 function touch()
-  global.life = global.lifemax
+  global.defense = global.defense + 1
   items.pickup_item(5)
 end

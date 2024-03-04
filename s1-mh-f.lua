@@ -1,3 +1,5 @@
+local items = include("_items")
+
 function talk()
   if global.wizard_see > 3 then return end
   
@@ -36,12 +38,8 @@ function talk()
 
   dink.script_attach(1000);
 
-  dink.playsound(22, 22050, 0, nil, false)
+  items.pickup_item(5, 22)
   global.wizard_see = 4
-  current_sprite.brain_parm = 5
-  current_sprite.brain = brain.BRAIN_PARM_SIZE_MATCH
-  current_sprite.touch_damage = 0
-  current_sprite.timing = 0
   global.magic = global.magic + 1
   dink.add_magic("item-fb", 437, 1);
   player:say_stop("I now have fireball magic!")

@@ -121,7 +121,7 @@ The commands supported out of the box are:
   
   - {"pmidi", midi} and {"smidi"}. playmidi(midi) and stopmidi().
   
-  - {"fn", function}, where function is a Lua function pointer or anonymous
+  - {"fn", actor, function}, where function is a Lua function pointer or anonymous
     function. This lets you run pretty much any Lua code you want anywhere
     you want inside a cutscene. Useful for situations where you want to do
     some one-shot code that doesn't really require its own command. For more
