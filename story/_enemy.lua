@@ -6,7 +6,7 @@ Common enemy code. In here goes code that lots of enemies share.
 local emake = include("_emake")
 
 function initialize_enemy(enemy_sprite, properties, preloads)
-  for _, seq in pairs(preloads) do
+  for _, seq in pairs(preloads or {}) do
     dink.preload_seq(seq)
   end
   for prop, value in pairs(properties) do

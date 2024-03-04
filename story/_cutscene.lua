@@ -296,6 +296,11 @@ function create_cutscene(default_wait, default_ih)
         self:wait()
       elseif command == "ass" then
         local actors = arg[1]
+        for _, actor in pairs(actors) do
+          if self.participants[actor] == nil then
+            error("No actor '"..actor.."' registered as a participant", 2)
+          end
+        end
         local lines = arg[2]
         
         local actor_count = #actors
