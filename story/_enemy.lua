@@ -5,6 +5,15 @@ Common enemy code. In here goes code that lots of enemies share.
 -- We'll make use of the emake functions, so let's import them.
 local emake = include("_emake")
 
+function initialize_enemy(enemy_sprite, properties, preloads)
+  for _, seq in pairs(preloads) do
+    dink.preload_seq(seq)
+  end
+  for prop, value in pairs(properties) do
+    enemy_sprite[prop] = value
+  end
+end
+
 function kill_enemy(enemy_sprite, editor_type_value, drop_item)
   local hold = enemy_sprite.editor_sprite
   if hold ~= nil then
