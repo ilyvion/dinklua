@@ -110,23 +110,22 @@ function use_magic_projectile(p_direction, base_seq, sound_number, damage_script
   junk.brain_parm2 = mshadow.sprite_number
 end
 
--- Used from bar-e.lua, bar-sh.lua and bar-f1.lua
-function break_barrel(barrel_sprite, make_item, make_item_arg)
+local function break_sprite(broken_sprite, seq, frame, make_item, make_item_arg)
   -- play noise
   dink.playsound(37, 22050, 0, nil, false)
   
-  local hold = barrel_sprite.editor_sprite
+  local hold = broken_sprite.editor_sprite
   if hold ~= nil then
     -- this was placed by the editor, lets make the barrel stay flat
     hold.type = editor_type.DRAW_BACKGROUND_WITHOUT_HARDNESS
-    hold.seq = 173
-    hold.frame = 6
+    hold.seq = seq
+    hold.frame = frame
   end
   
-  barrel_sprite.seq = 173
-  barrel_sprite.brain = brain.KILL_SEQ_DONE_LEAVE_LAST_FRAME
-  barrel_sprite.notouch = true
-  barrel_sprite.nohit = true
+  broken_sprite.seq = seq
+  broken_sprite.brain = brain.KILL_SEQ_DONE_LEAVE_LAST_FRAME
+  broken_sprite.notouch = true
+  broken_sprite.nohit = true
   
   if make_item ~= nil then
     --[[
@@ -136,16 +135,26 @@ function break_barrel(barrel_sprite, make_item, make_item_arg)
       _make.lua file, e.g. make.sheart(x, y).
     --]]
     if make_item_arg == nil then
-      make[make_item](barrel_sprite.x, barrel_sprite.y)
+      make[make_item](broken_sprite.x, broken_sprite.y)
     else
-      make[make_item](barrel_sprite.x, barrel_sprite.y, make_item_arg)
+      make[make_item](broken_sprite.x, broken_sprite.y, make_item_arg)
     end
   end
   
-  barrel_sprite.hard = true
+  broken_sprite.hard = true
   -- sprite ain't hard no more!  Let's redraw the hard map in one area
-  barrel_sprite:draw_hard()
+  broken_sprite:draw_hard()
   dink.kill_this_task()
+end
+
+-- Used from bar-e.lua, bar-sh.lua and bar-f1.lua
+function break_barrel(barrel_sprite, make_item, make_item_arg)
+  break_sprite(barrel_sprite, 173, 6, make_item, make_item_arg)
+end
+
+-- Used from box1-e.lua and box2-e.lua
+function break_box(box_sprite, seq, make_item, make_item_arg)
+  break_sprite(box_sprite, seq, 7, make_item, make_item_arg)
 end
 
 -- Used from ch*.lua
