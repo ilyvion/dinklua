@@ -102,7 +102,7 @@ The commands supported out of the box are:
     strings, which causes the actor whose turn it is to say all the strings
     in that table before the next actor gets to talk again.
   
-  - {"msX", destination}. This is the move_stop command shorthand. This is a
+  - {"msX", actor, destination}. This is the move_stop command shorthand. This is a
     prefix command, meaning that the X in the command must be substituted by
     the desired suffix to work as desired. The supported suffixes for this
     command are "sw", "s", "se", "w", "e", "nw", "n" and "ne", which result
@@ -111,6 +111,8 @@ The commands supported out of the box are:
     non-stop version of move, substitute "mvX" for "msX".
   
   - {"k", actor}. This sets actor.active = 0, i.e. kills their sprite.
+
+  - {"dir", actor, direction}. This sets actor.direction = direction.
   
   - {"fdu"} and {"fdd"}. fade_up() and fade_down().
   
@@ -120,6 +122,8 @@ The commands supported out of the box are:
     participants.
   
   - {"pmidi", midi} and {"smidi"}. playmidi(midi) and stopmidi().
+  
+  - {"psound", ...}. playsound(...).
   
   - {"fn", actor, function}, where function is a Lua function pointer or anonymous
     function. This lets you run pretty much any Lua code you want anywhere
@@ -277,6 +281,9 @@ function create_cutscene(default_wait, default_ih)
         self:wait()
       elseif command == "smidi" then
         dink.stopmidi()
+        self:wait()
+      elseif command == "psound" then
+        dink.playsound(table.unpack(arg))
         self:wait()
       elseif command == "fdu" then
         dink.fade_up()
