@@ -10,7 +10,7 @@ function main()
   cs:add_participant("w", current_sprite, "0")
   
   -- Makes a fire-ring appear with a woosh-sound at the specified coordinates
-  cs:add_command("whoosh", function(x, y)
+  cs:add_command("whoosh", function(_, x, y)
     local mcrap = dink.create_sprite(x, y, brain.KILL_SEQ_DONE, 167, 1)
     mcrap.seq = 167
     dink.playsound(24, 22052, 0, nil, false)
@@ -79,4 +79,3 @@ function main()
   current_sprite.active = false
   return
 end
-

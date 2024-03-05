@@ -362,6 +362,9 @@ function create_cutscene(default_wait, default_ih)
         elseif command == "k" then
           actor.active = false
           self:wait()
+        elseif command == "dir" and type(arg[2]) == "number" then
+          actor.dir = arg[2]
+          self:wait()
         elseif command == "fn" and type(arg[2]) == "function" then
           arg[2](actor)
           self:wait()
@@ -455,18 +458,18 @@ function create_cutscene(default_wait, default_ih)
                 -- running cf(1, 2, 3). (cf is the pointer to the custom function
                 -- that was registered with the command using one of the add*command
                 -- methods.)
-                cf(table.unpack(arg))
+                cf(self, table.unpack(arg))
               elseif ftype == "a" then
                 local actor
                 if type(arg[1]) == "string" then
-                  actor = self.participants[arg[1]]
+                  actor = self.participants[arg[1]].sprite
                 else
                   actor = arg[1]
                 end
-                cf(actor, select(2, table.unpack(arg)))
+                cf(self, actor, select(2, table.unpack(arg)))
               elseif ftype == "p" then
                 local suffix = string.sub(command, string.len(cn) + 1)
-                cf(suffix, table.unpack(arg))
+                cf(self, suffix, table.unpack(arg))
               elseif ftype == "pa" then
                 local suffix = string.sub(command, string.len(cn) + 1)
                 local actor
@@ -475,7 +478,7 @@ function create_cutscene(default_wait, default_ih)
                 else
                   actor = arg[1]
                 end
-                cf(suffix, actor, table.unpack(arg))
+                cf(self, suffix, actor, table.unpack(arg))
               else
                 error("This should never happen under normal circumstances.")
               end
