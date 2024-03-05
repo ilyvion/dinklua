@@ -9,7 +9,7 @@ make.small(x, y)
 
 local make = include("_make")
 
-local function give_food()
+local function give_food(x, y)
   local mcrap = dink.random(3, 1)
   if mcrap == 1 then
     -- give them food type 1
@@ -43,7 +43,7 @@ function medium(x, y)
     -- let's give 'em a large heart
     make.heart(x, y)
   elseif mcrap == 3 then
-    give_food()
+    give_food(x, y)
   else
     -- lets give 'em a random amount of gold
     make.mgold(x, y)
@@ -57,7 +57,7 @@ function large(x, y)
     -- let's give 'em a large heart
     make.heart(x, y)
   elseif mcrap == 3 then
-    give_food()
+    give_food(x, y)
   else
     -- lets give 'em a random amount of gold
     make.lgold(x, y)
@@ -71,10 +71,9 @@ function xlarge(x, y)
     -- let's give 'em a large heart
     make.heart(x, y)
   elseif mcrap == 3 then
-    give_food()
+    give_food(x, y)
   else
     -- lets give 'em a random amount of gold
     make.gold200(x, y)
   end
 end
-
