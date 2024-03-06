@@ -66,7 +66,7 @@ function main()
     return
   end
 end
-  
+
 local choice_menu = dink.create_choice_menu()
 local choice_pig_feeding  = choice_menu:add_choice("Ask about pig feeding")
 local choice_father       = choice_menu:add_choice("Ask about your father")
@@ -128,4 +128,3 @@ end
 function hit()
   current_sprite:say_stop("`#Ouch!  Stop it!")
 end
-

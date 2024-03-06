@@ -18,7 +18,7 @@ function spawn_person(base_walk, dir, x, y, script)
     speed = 1,
     timing = 0,
     -- set starting pic
-    pseq = base_walk + 3,
+    pseq = base_walk + dir,
     pframe = 1,
     script = script
   })
