@@ -1,16 +1,19 @@
+local misc = include("_misc")
+
 function main()
   if global.caveguy > 4 then return end
 
   player:freeze()
-  local dude = dink.create_sprite(464, 116, 0, 0, 0)
-  dude.brain = brain.NONE
-  dude.base_walk = 370
-  dude.speed = 2
-  dude.timing = 0
-  -- set starting pic
-  dude.pseq = 373
-  dude.pframe = 1
-  dude.dir = direction.SOUTH
+  local dude = misc.create_sprite_initialized(464, 116, 0, 0, 0, {
+    brain = brain.NONE,
+    base_walk = 370,
+    speed = 2,
+    timing = 0,
+    -- set starting pic
+    pseq = 373,
+    pframe = 1,
+    dir = direction.SOUTH
+  })
 
   local cs = cutscene.create_cutscene(300)
   cs:add_participant("d", dude, "5")

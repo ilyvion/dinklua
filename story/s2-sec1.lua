@@ -16,12 +16,14 @@ function die()
   local mcrap = dink.create_sprite(current_sprite.x, current_sprite.y, 7, 167, 1)
   mcrap.seq = 167
 
-  current_sprite.brain = brain.NONE
-  current_sprite.size = 100
-  current_sprite.touch_damage = -1
-  current_sprite.seq = 0
-  current_sprite.pseq = 89
-  current_sprite.pframe = 10
+  misc.initialize_sprite(current_sprite, {
+    brain = brain.NONE,
+    size = 100,
+    touch_damage = -1,
+    seq = 0,
+    pseq = 89,
+    pframe = 10
+  })
 end
 
 function touch()

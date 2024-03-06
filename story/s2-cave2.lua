@@ -8,8 +8,7 @@ function main()
     dink.preload_seq(168)
     player:freeze()
 
-    local dude = dink.create_sprite(551, 157, 0, 0, 0)
-    enemy.initialize_enemy(dude, {
+    local dude = misc.create_sprite_initialized(551, 157, 0, 0, 0, {
       brain = brain.NONE,
       base_walk = 370,
       speed = 2,
@@ -20,8 +19,7 @@ function main()
     })
 
     -- Now EVIL
-    local evil = dink.create_sprite(-20, 130, 0, 0, 0)
-    enemy.initialize_enemy(evil, {
+    local evil = misc.create_sprite_initialized(-20, 130, 0, 0, 0, {
       brain = brain.NONE,
       base_walk = 300,
       speed = 1,
@@ -32,8 +30,7 @@ function main()
     })
 
     -- Now EVIL's friend
-    local evil2 = dink.create_sprite(-20, 210, 0, 0, 0)
-    enemy.initialize_enemy(evil2, {
+    local evil2 = misc.create_sprite_initialized(-20, 210, 0, 0, 0, {
       brain = brain.NONE,
       base_walk = 300,
       speed = 1,
@@ -44,8 +41,7 @@ function main()
     })
 
     -- And the third EVIL
-    local evil3 = dink.create_sprite(300, 470, 0, 0, 0)
-    enemy.initialize_enemy(evil3, {
+    local evil3 = misc.create_sprite_initialized(300, 470, 0, 0, 0, {
       brain = brain.NONE,
       base_walk = 300,
       speed = 1,
@@ -103,8 +99,7 @@ function main()
       {"mse", "e", 170},
     })
 
-    local junk = dink.create_sprite(240, 157, brain.MISSILE, 506, 1)
-    enemy.initialize_enemy(junk, {
+    local junk = misc.create_sprite_initialized(240, 157, brain.MISSILE, 506, 1, {
       seq = 506,
       dir = direction.EAST,
       speed = 6,

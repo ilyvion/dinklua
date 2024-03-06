@@ -124,4 +124,3 @@ end
 function die()
   player:say("I'm afraid he won't be making it to his destination.")
 end
-

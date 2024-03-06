@@ -34,4 +34,3 @@ function talk()
     dink.say_xy("`%Game saved", 1, 30)
   end
 end
-

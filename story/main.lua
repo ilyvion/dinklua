@@ -93,4 +93,3 @@ function main()
   --playmidi("story.mid")
   dink.kill_this_task()
 end
-

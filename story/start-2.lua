@@ -7,10 +7,11 @@ local crap
 function buttonon()
   current_sprite.pframe = 2
   dink.playsound(20, 22050, 0, nil, false)
-  crap = dink.create_sprite(358, 93, brain.NONE, 200, 1)
-  crap.noclip = true
-  crap.seq = 200
-  crap.reverse = false
+  crap = misc.create_sprite_initialized(358, 93, brain.NONE, 200, 1, {
+    noclip = true,
+    seq = 200,
+    reverse = false
+  })
 end
 
 function buttonoff()
@@ -78,4 +79,3 @@ function click()
     dink.say_xy("`%Try loading a saved game that exists, friend.", 0, 390)
   end
 end
-

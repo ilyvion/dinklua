@@ -13,13 +13,14 @@ function spawn_person(base_walk, dir, x, y, script)
   -- Right now just spawn the dang guy
   misc.preload_diagonal_seq(base_walk)
   -- Spawn guy
-  local pep = dink.create_sprite(x, y, brain.NONE, 0, 0)
-  pep.brain = brain.SMART_PEOPLE
-  pep.base_walk = base_walk
-  pep.speed = 1
-  pep.timing = 0
-  -- set starting pic
-  pep.pseq = base_walk + 3
-  pep.pframe = 1
-  pep.script = script
+  misc.create_sprite_initialized(x, y, brain.NONE, 0, 0, {
+    brain = brain.SMART_PEOPLE,
+    base_walk = base_walk,
+    speed = 1,
+    timing = 0,
+    -- set starting pic
+    pseq = base_walk + 3,
+    pframe = 1,
+    script = script
+  })
 end

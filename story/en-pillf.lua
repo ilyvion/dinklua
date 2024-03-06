@@ -1,9 +1,10 @@
 -- big pillbug brain
 
 local enemy = include("_enemy")
+local misc = include("_misc")
 
 function main()
-  enemy.initialize_enemy(current_sprite, {
+  misc.initialize_sprite(current_sprite, {
     brain = brain.MONSTER_DIAGONAL,
     speed = 3,
     nohit = false,

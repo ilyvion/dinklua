@@ -18,15 +18,15 @@ local function mainloop()
 end
 
 function main()
-  manager = dink.create_sprite(185, 150, 0, 0, 0)
-  manager.brain = brain.NONE
-  manager.base_walk = 240
-  manager.speed = 0
+  manager = misc.create_sprite_initialized(185, 150, 0, 0, 0, {
+    brain = brain.NONE,
+    base_walk = 240,
+    speed = 0,
 
-  -- set starting pic
-
-  manager.pseq = 243
-  manager.pframe = 1
+    -- set starting pic
+    pseq = 243,
+    pframe = 1
+  })
 
   mainloop()
 end

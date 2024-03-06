@@ -11,13 +11,15 @@ function main()
   
   misc.preload_diagonal_seq(540)
   misc.preload_diagonal_seq(530)
-  current_sprite.distance = 50
-  current_sprite.base_attack = 540
-  current_sprite.base_walk = 530
-  current_sprite.strength = 5
-  current_sprite.touch_damage = 2
-  current_sprite.hitpoints = 35
-  current_sprite.exp = 100
+  misc.initialize_sprite(current_sprite, {
+    distance = 50,
+    base_attack = 540,
+    base_walk = 530,
+    strength = 5,
+    touch_damage = 2,
+    hitpoints = 35,
+    exp = 100
+  })
   local mcrap = dink.get_editor_sprite(36).sprite
   if mcrap ~= nil then
     -- duck is still alive, lets have the monster target it for fun
@@ -62,4 +64,3 @@ function attack()
   dink.playsound(31, 22050, 0, current_sprite, false)
   current_sprite.attack_wait = dink.random(4000, 0)
 end
-

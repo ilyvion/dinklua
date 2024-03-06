@@ -8,13 +8,15 @@ function touch()
   if global.life < 1 then return end
   
   player:freeze()
-  player.x = 274
-  player.y = 195
-  player.seq = 452
-  player.frame = 1
-  player.nocontrol = true --dink can't move until anim is done!
+  misc.initialize_sprite(player, {
+    x = 274,
+    y = 195,
+    seq = 452,
+    frame = 1,
+    nocontrol = true, -- dink can't move until anim is done!
+    brain = brain.NONE
+  })
   current_sprite.touch_damage = 0
-  player.brain = brain.NONE
   dink.wait(2000)
   player.brain = brain.PLAYER
   misc.teleport(131, 289, 377)

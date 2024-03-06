@@ -1,14 +1,17 @@
 -- for start button
 
+local misc = include("_misc")
+
 local crap
 
 function buttonon()
   current_sprite.pframe = 2
   dink.playsound(20, 22050, 0, nil, false)
-  crap = dink.create_sprite(204, 86, brain.NONE, 199, 1)
-  crap.reverse = false
-  crap.noclip = true
-  crap.seq = 199
+  crap = misc.create_sprite_initialized(204, 86, brain.NONE, 199, 1, {
+    reverse = false,
+    noclip = true,
+    seq = 199
+  })
 end
 
 function buttonoff()
@@ -43,4 +46,3 @@ function click()
   --heed this too
   dink.kill_this_task()
 end
-

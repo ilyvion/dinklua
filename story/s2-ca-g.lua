@@ -14,7 +14,7 @@ local function enter()
 end
 
 function main()
-  enemy.initialize_enemy(current_sprite, {
+  misc.initialize_sprite(current_sprite, {
     base_attack = 720,
     distance = 60,
     strength = 50,

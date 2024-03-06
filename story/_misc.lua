@@ -81,19 +81,37 @@ end
 
 function sparkle_around(sprite)
   local myx, myy = sprite.x, sprite.y - 60
-  local mcrap = dink.create_sprite(myx, myy, brain.REPEAT, 169, 1)
-  mcrap.seq = 169
-  mcrap.script = "shrink"
+  create_sprite_initialized(myx, myy, brain.REPEAT, 169, 1, {
+    seq = 169,
+    script = "shrink"
+  })
 
   myx, myy = myx - 30, myy - 30
-  local dcrap = dink.create_sprite(myx, myy, brain.REPEAT, 169, 3)
-  dcrap.seq = 169
-  dcrap.frame = 3
-  dcrap.script = "shrink"
+  create_sprite_initialized(myx, myy, brain.REPEAT, 169, 3, {
+    seq = 169,
+    frame = 3,
+    script = "shrink"
+  })
 
   myx, myy = myx + 60, myy + 10
-  local rcrap = dink.create_sprite(myx, myy, brain.REPEAT, 169, 6)
-  rcrap.seq = 169
-  rcrap.frame = 6
-  rcrap.script = "shrink"
+  create_sprite_initialized(myx, myy, brain.REPEAT, 169, 6, {
+    seq = 169,
+    frame = 6,
+    script = "shrink"
+  })
+end
+
+function initialize_sprite(sprite, properties, preloads)
+  for _, seq in pairs(preloads or {}) do
+    dink.preload_seq(seq)
+  end
+  for prop, value in pairs(properties) do
+    sprite[prop] = value
+  end
+end
+
+function create_sprite_initialized(x, y, brain, seq, frame, properties, preloads)
+  local sprite = dink.create_sprite(x, y, brain, seq, frame)
+  initialize_sprite(sprite, properties, preloads)
+  return sprite
 end
