@@ -201,6 +201,25 @@ function check_has_free_items()
   end
 end
 
+function try_buy_item(cost, script, seq, frame)
+  if not check_has_free_items() then
+    return false
+  end
+  if global.gold < cost then 
+    misc.show_dialog("You don't have enough gold.")
+    return false
+  end
+
+  global.gold = global.gold - cost
+  dink.add_item(script, seq, frame)
+  return true
+end
+
+function sell_item(cost, script)
+  global.gold = global.gold + cost
+  dink.kill_this_item(script);
+end
+
 function pulsate_item(seq)
   current_sprite.touch_damage = -1
   current_sprite.seq = seq

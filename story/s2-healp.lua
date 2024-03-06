@@ -39,6 +39,8 @@ function hit()
 end
 
 function talk()
+  player:freeze()
+
   local amount_hurt = global.lifemax - global.life
   local title
   if amount_hurt <= 0 then
@@ -69,16 +71,9 @@ function talk()
       dink.playsound(22, 22050, 0, nil, false)
       player:say("I am healed.")
     elseif choice_result == choice_elixer then
-      if not items.check_has_free_items() then
+      if not items.try_buy_item(25, "item-eli", 438, 9) then
         goto continue
       end
-      if global.gold < 25 then 
-        misc.show_dialog("You don't have enough gold.")
-        goto continue
-      end
-
-      global.gold = global.gold - 25
-      dink.add_item("item-eli", 438, 9);
     end
 
     break

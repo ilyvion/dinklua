@@ -1,16 +1,9 @@
--- item elixer
+-- item bomb
 
 local fists = include("item-fst")
 
 function use()
-  global.life = global.life + 20
-  if global.life > global.lifemax then
-    global.life = global.lifemax
-  end
-  dink.playsound(22, 22050, 0, nil, false)
-  
-  -- lets make the star magic graphic effect
-  misc.sparkle_around(player)
+  dink.spawn("dam-bom")
   
   dink.kill_cur_item()
   -- nothing more will be read here, put stuff in disarm and drop if you need
@@ -18,14 +11,16 @@ function use()
 end
 
 function disarm()
-  dink.debug("Elixer disarmed.")
+  dink.debug("bomb disarmed.")
   
   dink.kill_this_task()
 end
 
 function arm()
-  dink.preload_seq(169)
-  
+  dink.preload_seq(420)
+  dink.preload_seq(161)
+  dink.preload_seq(166)
+
   fists.arm()
 end
 
@@ -34,7 +29,7 @@ function pickup()
 end
 
 function drop()
-  dink.debug("elixer removed");
+  dink.debug("bomb removed");
   dink.draw_status()
   dink.kill_this_task()
 end

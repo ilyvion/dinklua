@@ -1,0 +1,6 @@
+Scripts to highlight:
+- Cutscene scripts -- Using _cutscene.lua (Examples: s1-wiz, s2-cave2)
+- Shop scripts -- Using _items.lua (Examples: s2-healp, s2-out)
+
+Things to point out:
+- Screenlock replaced by lock_screen(), unlock_screen() and is_screen_locked()
