@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   dink.preload_seq(452)
 end

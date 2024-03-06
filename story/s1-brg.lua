@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   if global.story > 6 then
     return

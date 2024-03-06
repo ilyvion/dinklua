@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   current_sprite.seq = 449
   current_sprite.sound = 34

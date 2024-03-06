@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   current_sprite.nodraw = true
   current_sprite.touch_damage = -1

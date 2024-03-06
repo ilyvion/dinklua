@@ -5,7 +5,6 @@ items and equipped items) share.
 
 -- We'll make use of the make functions, so let's import them.
 local make = include("_make")
-local misc = include("_misc")
 
 --[[
 Common use-item code. Restricts the player's direction to non-diagonal

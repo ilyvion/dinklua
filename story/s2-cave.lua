@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   if global.caveguy > 4 then return end
 

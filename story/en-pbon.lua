@@ -1,7 +1,6 @@
 -- Bonca.. medium strength
 
 local enemy = include("_enemy")
-local misc = include("_misc")
 
 function main()
   dink.lock_screen()

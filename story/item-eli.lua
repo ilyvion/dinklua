@@ -1,7 +1,5 @@
 -- item elixer
 
-local misc = include("_misc")
-
 function use()
   global.life = global.life + 20
   if global.life > global.lifemax then

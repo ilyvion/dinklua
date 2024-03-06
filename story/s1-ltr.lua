@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   local cs = cutscene.create_cutscene(250)
   cs:add_participant("l", current_sprite, "2")

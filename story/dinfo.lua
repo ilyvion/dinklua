@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 local choice_menu = dink.create_choice_menu()
 local choice_load = choice_menu:add_choice("Load a previously saved game")
 local choice_restart = choice_menu:add_choice("Restart game")

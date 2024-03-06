@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   current_sprite.speed = 2
   current_sprite.timing = 0

@@ -7,7 +7,6 @@ local people = include("_people")
 people.spawn_person(390, direction.SOUTH_EAST, 326, 300, "s2-wand")
 --]]
 
-local misc = include("_misc")
 
 function spawn_person(base_walk, dir, x, y, script)
   -- Right now just spawn the dang guy

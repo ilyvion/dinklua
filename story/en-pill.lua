@@ -1,7 +1,6 @@
 -- pillbug brain
 
 local enemy = include("_enemy")
-local misc = include("_misc")
 
 function main()
   misc.initialize_sprite(current_sprite, {

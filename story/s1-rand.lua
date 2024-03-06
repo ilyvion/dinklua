@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   if dink.random(8,1) == 1 then
     if dink.random(2,1) == 1 then

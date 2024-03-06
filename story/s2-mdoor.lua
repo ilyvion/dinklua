@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function touch()
   player:freeze()
   player:move_stop(direction.EAST, 300, 1)

@@ -1,8 +1,6 @@
 --this is run when dink is loaded, directly after the dink.ini file
 --is processed.
 
-local misc = include("_misc")
-
 function main()
   --dink.playavi("anim\rtlogo.avi")
   

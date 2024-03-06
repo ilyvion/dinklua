@@ -78,6 +78,7 @@ function main()
   
   -- Autoincludes are scripts that are included in every other Lua script
   autoinclude("cutscene", "_cutscene")
+  autoinclude("misc", "_misc")
 
   -- crap needed for misc
   player:set_speed(3)

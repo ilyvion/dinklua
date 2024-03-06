@@ -1,5 +1,4 @@
 local enemy = include("_enemy")
-local misc = include("_misc")
 
 local function enter()
   local gate = dink.get_editor_sprite(4).sprite

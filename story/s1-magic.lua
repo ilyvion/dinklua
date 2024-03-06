@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   if global.wizard_again == 0 then
     misc.preload_diagonal_seq(560)

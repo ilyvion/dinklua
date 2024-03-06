@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   dink.debug("Wizard see is "..global.wizard_see)
   

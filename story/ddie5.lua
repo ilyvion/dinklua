@@ -1,7 +1,5 @@
 -- generic script for killing things so they don't come back
 
-local misc = include("_misc")
-
 function main()
   current_sprite.hitpoints = 1
   

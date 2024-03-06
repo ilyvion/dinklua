@@ -1,7 +1,5 @@
 -- for start button
 
-local misc = include("_misc")
-
 local crap
 
 function buttonon()

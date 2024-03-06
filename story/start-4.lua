@@ -1,7 +1,5 @@
 --for quit button
 
-local misc = include("_misc")
-
 local crap
 
 function buttonon()

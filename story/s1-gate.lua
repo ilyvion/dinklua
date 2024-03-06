@@ -1,5 +1,3 @@
-local misc = include("_misc")
-
 function main()
   if global.little_girl < 2 then
     local ran = dink.random(2, 1)

@@ -1,7 +1,6 @@
 -- slayer.. we don't have the death graphics yet, oh well
 
 local enemy = include("_enemy")
-local misc = include("_misc")
 
 function main()
   misc.initialize_sprite(current_sprite, {

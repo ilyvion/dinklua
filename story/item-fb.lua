@@ -1,5 +1,4 @@
 local items = include("_items")
-local misc = include("_misc")
 
 function use()
   local mydir = player.dir

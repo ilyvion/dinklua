@@ -1,7 +1,6 @@
 -- script for store manager, actually attached to the bench
 
 local items = include("_items")
-local misc = include("_misc")
 
 local manager
 

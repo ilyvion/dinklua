@@ -1,7 +1,5 @@
 -- this is run when the escape key is pressed
 
-local misc = include("_misc")
-
 function main()
   dink.playsound(18, 22050, 0, nil, false)
   player:freeze()

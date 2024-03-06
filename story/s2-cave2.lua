@@ -1,5 +1,4 @@
 local enemy = include("_enemy")
-local misc = include("_misc")
 
 function main()
   if global.caveguy == 5 then
