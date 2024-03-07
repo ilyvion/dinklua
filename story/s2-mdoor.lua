@@ -19,6 +19,7 @@ local function enter()
   dink.fade_down()
   dink.fill_screen(0)
   misc.teleport(38, 261, 350)
+  dink.draw_status()
   dink.fade_up()
   dink.kill_this_task()
 end

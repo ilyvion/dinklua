@@ -3,8 +3,8 @@ local items = include("_items")
 function use()
   local mydir = player.dir
 
-  items.use_magic_item(320, 100, "v")
-  items.use_magic_projectile(mydir, 500, 17, "dam-fire", 10, true)
+  items.use_magic_item(320, 100, "h")
+  items.use_magic_projectile(mydir, 163, 17, "dam-ice", 6, false)
 end
 
 function disarm()
@@ -13,17 +13,11 @@ function disarm()
 end
 
 function arm()
-  dink.debug("Preloading fireball")
+  dink.debug("Preloading ice")
 
-  global.magic_cost = 100
-  misc.preload_cardinal_seq(320)
-  misc.preload_cardinal_seq(500)
-  
-  -- tree burn
-  dink.preload_seq(20)
-  
-  -- explosion
-  dink.preload_seq(70)
+  global.magic_cost = 1000
+  misc.preload_cardinal_seq(163)
+  misc.preload_cardinal_seq(94)
 end
 
 function pickup()

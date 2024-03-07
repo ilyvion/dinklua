@@ -6,7 +6,7 @@ function use()
   local dir = player.dir
   local mholdx, mholdy = player.x, player.y
   
-  items.use_item(520, 250, 13)
+  items.use_item(520, 250, 13, "v")
   
   local junk
   if dir == direction.WEST then

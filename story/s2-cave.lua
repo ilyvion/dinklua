@@ -12,6 +12,7 @@ function main()
     pframe = 1,
     dir = direction.SOUTH
   })
+  volatile.dude = dude
 
   local cs = cutscene.create_cutscene(300)
   cs:add_participant("d", dude, "5")

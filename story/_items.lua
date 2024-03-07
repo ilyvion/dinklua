@@ -12,12 +12,20 @@ directions, runs an animation sequence based on a base sequence plus
 the direction the player is facing, waits a certain amount of time,
 then plays a specific sound effect.
 --]]
-function use_item(base_seq, use_wait, sound_number)
-  -- disallow diagonal punches
-  if player.dir == direction.SOUTH_WEST or player.dir == direction.SOUTH_EAST then
-    player.dir = direction.SOUTH
-  elseif player.dir == direction.NORTH_WEST or player.dir == direction.NORTH_EAST then
-    player.dir = direction.NORTH
+function use_item(base_seq, use_wait, sound_number, restrict_dir)
+  -- disallow diagonal usage
+  if restrict_dir == "v" then
+    if player.dir == direction.SOUTH_WEST or player.dir == direction.SOUTH_EAST then
+      player.dir = direction.SOUTH
+    elseif player.dir == direction.NORTH_WEST or player.dir == direction.NORTH_EAST then
+      player.dir = direction.NORTH
+    end
+  elseif restrict_dir == "h" then
+    if player.dir == direction.SOUTH_WEST or player.dir == direction.NORTH_WEST then
+      player.dir = direction.WEST
+    elseif player.dir == direction.SOUTH_EAST or player.dir == direction.NORTH_EAST then
+      player.dir = direction.EAST
+    end
   end
   
   player.seq = base_seq + player.dir -- base_seq is the 'base' for the hit animations, we just add the direction
@@ -32,50 +40,55 @@ function use_item(base_seq, use_wait, sound_number)
   end
 end
 
-function use_magic_item(base_seq, use_wait)
-  use_item(base_seq, nil, nil)
+function use_magic_item(base_seq, use_wait, restrict_dir)
+  use_item(base_seq, nil, nil, restrict_dir)
   global.magic_level = 0
   dink.draw_status()
   dink.wait(use_wait)
 end
 
-function use_magic_projectile(p_direction, base_seq, sound_number, damage_script)
+function use_magic_projectile(p_direction, base_seq, sound_number, damage_script, strength, directional_seq)
   local mholdx, mholdy = player.x, player.y
   local seq, mx, my, dir
   if p_direction == direction.SOUTH_WEST then
     mholdx = mholdx - 30
-    seq = base_seq + 4
+    seq = 4
     mx = -6
     my = 2
   elseif p_direction == direction.WEST then
     mholdx = mholdx - 30
-    seq = base_seq + 4
+    seq = 4
     dir = 4
   elseif p_direction == direction.NORTH_WEST then
     mholdx = mholdx - 30
-    seq = base_seq + 4
+    seq =  4
     mx = -6
     my = -2
   elseif p_direction == direction.NORTH then
-    seq = base_seq + 8
+    seq = 8
     dir = 8
   elseif p_direction == direction.NORTH_EAST then
     mholdx = mholdx + 30
-    seq = base_seq + 6
+    seq = 6
     mx = 6
     my = -2
   elseif p_direction == direction.EAST then
     mholdx = mholdx + 30
-    seq = base_seq + 6
+    seq = 6
     dir = 6
   elseif p_direction == direction.SOUTH_EAST then
     mholdx = mholdx + 30
-    seq = base_seq + 6
+    seq = 6
     mx = 6
     my = 2
   elseif p_direction == direction.SOUTH then
-    seq = base_seq + 2
+    seq = 2
     dir = 2
+  end
+  if directional_seq then
+    seq = base_seq + seq
+  else
+    seq = base_seq
   end
   local junk = dink.create_sprite(mholdx, mholdy, brain.MISSILE, seq, 1)
   junk.seq = seq
@@ -91,7 +104,7 @@ function use_magic_projectile(p_direction, base_seq, sound_number, damage_script
   
   junk.timing = 0
   junk.speed = 6
-  junk.strength = 10
+  junk.strength = strength
   junk.range = 10
   -- this makes it easier to hit stuff
   junk.flying = true

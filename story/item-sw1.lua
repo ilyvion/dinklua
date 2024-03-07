@@ -3,7 +3,7 @@
 local items = include("_items")
 
 function use()
-  items.use_item(100, 200, 8)
+  items.use_item(100, 200, 8, "v")
 end
 
 function disarm()

@@ -3,7 +3,7 @@
 local items = include("_items")
 
 function use()
-  items.use_item(100, 1, 8)
+  items.use_item(100, 1, 8, "v")
 end
 
 function disarm()
@@ -45,4 +45,3 @@ function drop()
   dink.debug("Item dropped.")
   dink.kill_this_task()
 end
-
