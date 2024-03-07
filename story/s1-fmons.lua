@@ -33,6 +33,5 @@ end
 function die()
   global.farmer_quest = 2
   global.exp = global.exp + 40
-  current_sprite:say("`9Damn you ... damn .. you.")
+  misc.death_speak(current_sprite, "`9Damn you ... damn .. you.")
 end
-

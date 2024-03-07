@@ -205,6 +205,30 @@ a method.
 
 --]]
 
+local function direction_from_string(dir_string)
+  local dir
+  if dir_string == "sw" then
+    dir = direction.SOUTH_WEST
+  elseif dir_string == "s" then
+    dir = direction.SOUTH
+  elseif dir_string == "se" then
+    dir = direction.SOUTH_EAST
+  elseif dir_string == "w" then
+    dir = direction.WEST
+  elseif dir_string == "e" then
+    dir = direction.EAST
+  elseif dir_string == "nw" then
+    dir = direction.NORTH_WEST
+  elseif dir_string == "n" then
+    dir = direction.NORTH
+  elseif dir_string == "ne" then
+    dir = direction.NORTH_EAST
+  else
+    error("Unknown move direction: "..dir_string, 2)
+  end
+  return dir
+end
+
 function quick_cutscene(participants, scene)
   local cs = create_cutscene()
   for name, sprite in pairs(participants) do
@@ -239,6 +263,9 @@ function create_cutscene(default_wait, default_ih)
     participants = {},
     add_participant = function(self, key, sprite, color)
       self.participants[key] = {sprite = sprite, color = color, default_color = color}
+    end,
+    remove_participant = function(self, key)
+      self.participants[key] = nil
     end,
     
     -- Custom command table
@@ -301,7 +328,14 @@ function create_cutscene(default_wait, default_ih)
           participant.sprite:unfreeze()
         end
         self:wait()
-      elseif command == "ass" then
+      elseif command == "ass" or command == "assn" then
+        local function say(actor, line)
+          if command == "ass" then
+            actor:say_stop(line)
+          elseif command == "assn" then
+            actor:say_stop_npc(line)
+          end
+        end
         local actors = arg[1]
         for _, actor in pairs(actors) do
           if self.participants[actor] == nil then
@@ -322,16 +356,16 @@ function create_cutscene(default_wait, default_ih)
           
           if type(line) == "string" then
             if string.sub(line, 1, 1) == "`" or color == nil then
-              actor:say_stop(line)
+              say(actor, line)
             else
-              actor:say_stop("`"..color..line)
+              say(actor, "`"..color..line)
             end
           elseif type(line) == "table" then
             for _, txt in pairs(line) do
               if string.sub(txt, 1, 1) == "`" or color == nil then
-                actor:say_stop(txt)
+                say(actor, txt)
               else
-                actor:say_stop("`"..color..txt)
+                say(actor, "`"..color..txt)
               end
             end
           else
@@ -369,13 +403,32 @@ function create_cutscene(default_wait, default_ih)
         elseif command == "k" then
           actor.active = false
           self:wait()
-        elseif command == "dir" and type(arg[2]) == "number" then
-          actor.dir = arg[2]
+        elseif command == "dir" then
+          local dir
+          if type(arg[2]) == "number" then
+            dir = arg[2]
+          elseif type(arg[2]) == "string" then
+            local success, result = pcall(direction_from_string, arg[2])
+            if not success then
+              error("Unknown move direction: "..arg[2], 2)
+            end
+            dir = result
+          else
+            error("The dir command only accepts a number or a direction string.", 2)
+          end 
+          actor.dir = dir
           self:wait()
         elseif command == "fn" and type(arg[2]) == "function" then
           arg[2](actor)
           self:wait()
-        elseif command == "ss" then
+        elseif command == "ss" or command == "ssn" then
+          local function say(actor, line)
+            if command == "ss" then
+              actor:say_stop(line)
+            elseif command == "ssn" then
+              actor:say_stop_npc(line)
+            end
+          end
           local text = arg[2]
           local color
           if type(arg[1]) == "string" then
@@ -383,16 +436,16 @@ function create_cutscene(default_wait, default_ih)
           end
           if type(text) == "string" then
             if string.sub(text, 1, 1) == "`" or color == nil then
-              actor:say_stop(text)
+              say(actor, text)
             else
-              actor:say_stop("`"..color..text)
+              say(actor, "`"..color..text)
             end
           elseif type(text) == "table" then
             for _, txt in pairs(text) do
               if string.sub(txt, 1, 1) == "`" or color == nil then
-                actor:say_stop(txt)
+                say(actor, txt)
               else
-                actor:say_stop("`"..color..txt)
+                say(actor, "`"..color..txt)
               end
             end
           else
@@ -424,26 +477,11 @@ function create_cutscene(default_wait, default_ih)
           end
         elseif string.sub(command, 1, 2) == "ms" or string.sub(command, 1, 2) == "mv" then
           local command_direction = string.sub(command, 3)
-          local dir
-          if command_direction == "sw" then
-            dir = direction.SOUTH_WEST
-          elseif command_direction == "s" then
-            dir = direction.SOUTH
-          elseif command_direction == "se" then
-            dir = direction.SOUTH_EAST
-          elseif command_direction == "w" then
-            dir = direction.WEST
-          elseif command_direction == "e" then
-            dir = direction.EAST
-          elseif command_direction == "nw" then
-            dir = direction.NORTH_WEST
-          elseif command_direction == "n" then
-            dir = direction.NORTH
-          elseif command_direction == "ne" then
-            dir = direction.NORTH_EAST
-          else
+          local success, result = pcall(direction_from_string, command_direction)
+          if not success then
             error("Unknown move direction: "..command, 2)
           end
+          local dir = result
           if string.sub(command, 1, 2) == "ms" then
             actor:move_stop(dir, arg[2], self.ignore_hardness)
             self:wait()

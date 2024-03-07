@@ -37,6 +37,7 @@ function main()
     {"mse", "c", 469},
     {"ss", "c", "In here"},
     {"mse", "d", 510},
+    {"ih", false},
     {"msn", "d", 0},
   })
 end

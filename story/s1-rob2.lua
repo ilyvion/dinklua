@@ -48,7 +48,7 @@ function die()
   global.safe = 1
   
   current_sprite:freeze()
-  current_sprite:say("`1Ahhhhhhh")
+  misc.death_speak(current_sprite, "`1Ahhhhhhh")
   dink.wait(400)
   current_sprite.active = false
 end
@@ -57,4 +57,3 @@ function attack()
   dink.playsound(36, 22050, 0, current_sprite, false)
   current_sprite.attack_wait = dink.random(4000, 0)
 end
-

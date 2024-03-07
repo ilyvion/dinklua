@@ -50,8 +50,8 @@ function talk()
         },
       }},
       {"w", 500},
-      {"dir", "d", direction.SOUTH},
-      {"dir", "d", direction.WEST},
+      {"dir", "d", "s"},
+      {"dir", "d", "w"},
       {"w", 300},
       {"ass", {"d", "m"}, {
         {

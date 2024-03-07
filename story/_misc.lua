@@ -115,3 +115,12 @@ function create_sprite_initialized(x, y, brain, seq, frame, properties, preloads
   initialize_sprite(sprite, properties, preloads)
   return sprite
 end
+
+-- Dead sprites can't speak. But with this simple trick,
+-- they can! (Useful when you want somebody to talk when
+-- they die.)
+function death_speak(sprite, text)
+  local death_sprite = dink.create_sprite(sprite.x, sprite.y, 0, 0, 0)
+  death_sprite:say(text)
+  return death_sprite
+end

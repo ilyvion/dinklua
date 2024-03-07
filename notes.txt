@@ -1,6 +1,13 @@
 Scripts to highlight:
 - Cutscene scripts -- Using _cutscene.lua (Examples: s1-wiz, s2-cave2)
 - Shop scripts -- Using _items.lua (Examples: s2-healp, s2-out)
+- Because choice menus are objects and conditions are proper boolean expressions,
+  you can do much more advanced conditions for them, like *OR* instead of *AND*
+  among others.
 
 Things to point out:
 - Screenlock replaced by lock_screen(), unlock_screen() and is_screen_locked()
+- Scripts are interrupted when a new function is called by the engine. As such,
+  using loops like `while true` within a script is perfectly fine
+  (examples: s2-man2, s2-wench; `mainloop()`) as long as there's a yielding
+  function call in there somewhere, such as `say_stop` or `wait`.
