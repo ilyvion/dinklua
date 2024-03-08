@@ -346,6 +346,7 @@ function create_cutscene(default_wait, default_ih)
         
         local actor_count = #actors
         local current_actor = 1
+        local do_wait
         for _, line in pairs(lines) do
           local actor = actors[current_actor]
           local color
@@ -353,6 +354,7 @@ function create_cutscene(default_wait, default_ih)
             color = self.participants[actor].color
             actor = self.participants[actor].sprite
           end
+          do_wait = true
           
           if type(line) == "string" then
             if string.sub(line, 1, 1) == "`" or color == nil then
@@ -361,6 +363,10 @@ function create_cutscene(default_wait, default_ih)
               say(actor, "`"..color..line)
             end
           elseif type(line) == "table" then
+            if #line == 0 then
+              -- Don't wait after somebody said nothing
+              do_wait = false
+            end
             for _, txt in pairs(line) do
               if string.sub(txt, 1, 1) == "`" or color == nil then
                 say(actor, txt)
@@ -376,7 +382,9 @@ function create_cutscene(default_wait, default_ih)
           if current_actor > actor_count then
             current_actor = 1
           end
-          self:wait()
+          if do_wait then
+            self:wait()
+          end
         end
       else
         local actor
