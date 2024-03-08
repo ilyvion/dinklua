@@ -174,9 +174,8 @@ function main()
 
     dink.fade_down()
     dink.fill_screen(0)
-
     misc.teleport(625, 268, 173, direction.NORTH)
-
+    dink.draw_status()
     dink.fade_up()
     dink.kill_this_task()
   end

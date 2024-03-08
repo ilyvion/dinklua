@@ -2,13 +2,11 @@ function main()
   current_sprite.nodraw = true
   current_sprite.touch_damage = -1
 
-  -- TODO: use volatile?
-  global.temp1hold = 0
+  volatile.gate_disabled = false
 end
 
 function touch()
-  -- TODO: use volatile?
-  if global.temp1hold ~= 0 then return end
+  if volatile.gate_disabled then return end
 
   current_sprite.touch_damage = 0
   dink.playsound(42, 10000, 0, nil, false)

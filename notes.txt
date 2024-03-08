@@ -11,3 +11,5 @@ Things to point out:
   using loops like `while true` within a script is perfectly fine
   (examples: s2-man2, s2-wench; `mainloop()`) as long as there's a yielding
   function call in there somewhere, such as `say_stop` or `wait`.
+- Because of the `volatile` global, we can avoid needing weird "temporary"
+  global variables like the `temp#hold` ones.
