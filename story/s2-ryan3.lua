@@ -8,7 +8,7 @@ function main()
     -- set starting pic
     pseq = 377,
     pframe = 1
-  })
+  }, {{"d", 370}})
   -- Ok Go
   local cs = cutscene.create_cutscene()
   cs:add_participant("d", player)
@@ -41,38 +41,26 @@ function main()
     {"ss", "r", "Just one more second..."},
     {"pmidi", "battle.mid"}
   })
+  
+  local function make_guard(x, y)
+    return misc.create_sprite_initialized(x, y, brain.MONSTER_DIAGONAL, 0, 0, {
+      base_walk = 290,
+      base_attack = 720,
+      speed = 1,
+      strength = 10,
+      touch_damage = 2,
+      timing = 0,
+      target = player,
+      hitpoints = 40,
+      distance = 50,
+    }, {{"d", 290}, {"c", 720}, 725})
+  end
 
-  local crap = misc.create_sprite_initialized(380, 450, brain.MONSTER_DIAGONAL, 0, 0, {
-    base_walk = 290,
-    base_attack = 720,
-    speed = 1,
-    strength = 10,
-    touch_damage = 2,
-    timing = 0,
-    target = player,
-    hitpoints = 40,
-    distance = 50,
-  }, {
-    291, 293, 297, 299,
-    722, 724, 725, 726,
-  })
+  local crap = make_guard(380, 450)
   crap:freeze()
   crap:move(direction.NORTH_WEST, 250, true)
 
-  local jcrap = misc.create_sprite_initialized(280, 450, brain.MONSTER_DIAGONAL, 0, 0, {
-    base_walk = 290,
-    base_attack = 720,
-    speed = 1,
-    strength = 10,
-    touch_damage = 2,
-    timing = 0,
-    target = player,
-    hitpoints = 40,
-    distance = 50,
-  }, {
-    291, 293, 297, 299,
-    722, 724, 725, 726,
-  })
+  local jcrap = make_guard(280, 450)
   jcrap:freeze()
   jcrap:move(direction.NORTH_EAST, 400, true)
 

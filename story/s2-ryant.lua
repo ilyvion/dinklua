@@ -8,7 +8,7 @@ function main()
     -- set starting pic
     pseq = 371,
     pframe = 1,
-  }, {371, 373})
+  }, {{"d", 370}})
 end
 
 function talk()

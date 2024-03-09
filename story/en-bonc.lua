@@ -16,11 +16,7 @@ function main()
     strength = 8,
     touch_damage = 4,
     hitpoints = 20
-  }, {  
-    531, 533, 537, 539,
-    551, 553, 557, 559,
-    542, 544, 546, 548
-  })
+  }, {{"d", 530}, {"d", 550}, {"c", 540}})
 end
 
 function hit(enemy_sprite)

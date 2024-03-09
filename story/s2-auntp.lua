@@ -3,8 +3,6 @@
 local aunt = include("s2-aunt")
 
 function main()
-  misc.preload_diagonal_seq(250)
-
   local jack = nil
   if global["s2-aunt"] < 4 then
     jack = misc.create_sprite_initialized(160, 150, 0, 0, 0, {
@@ -20,7 +18,7 @@ function main()
     -- set starting pic
     pseq = 251,
     pframe = 1
-  })
+  }, {{"d", 250}})
 
   local cs = cutscene.create_cutscene(500)
   cs:add_participant("d", player)

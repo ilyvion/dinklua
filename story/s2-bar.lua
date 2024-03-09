@@ -55,12 +55,10 @@ function main()
   })
 
   -- Maybe build Thief
-  if global.thief < 2 then
-    if dink.random(2, 1) == 1 then
-      misc.create_sprite_initialized(560, 248, 0, 0, 0, {
-        script = "s2-ryant"
-      })
-    end
+  if global.thief < 2 and dink.random(2, 1) == 1 then
+    misc.create_sprite_initialized(560, 248, 0, 0, 0, {
+      script = "s2-ryant"
+    })
   end
 
   -- Maybe do cave sequence
@@ -76,7 +74,7 @@ function main()
       -- set starting pic
       pseq = 303,
       pframe = 1
-    })
+    }, {{"d", 300}})
     player:freeze()
     cutscene.quick_cutscene({d = player, b = barkeep, c = badguy}, {
       {"ac", "b", "4"},
@@ -159,35 +157,24 @@ function talk()
     dink.playmidi("battle.mid")
 
     -- build guards
-    local crap = misc.create_sprite_initialized(380, 450, brain.MONSTER_DIAGONAL, 0, 0, {
-      base_walk = 290,
-      base_attack = 720,
-      speed = 1,
-      strength = 10,
-      touch_damage = 2,
-      timing = 0,
-      distance = 50,
-      target = 1,
-      hitpoints = 4
-    }, {
-      291, 293, 297, 299,
-      722, 724, 725, 726
-    })
+    local function make_guard(x, y)
+      return misc.create_sprite_initialized(x, y, brain.MONSTER_DIAGONAL, 0, 0, {
+        base_walk = 290,
+        base_attack = 720,
+        speed = 1,
+        strength = 10,
+        touch_damage = 2,
+        timing = 0,
+        distance = 50,
+        target = player,
+        hitpoints = 4
+      }, {{"d", 290}, {"c", 720}, 725})
+    end
+    local crap = make_guard(380, 450)
     crap:freeze()
     crap:move_stop(direction.NORTH_WEST, 250, true)
-
     
-    local jcrap = misc.create_sprite_initialized(280, 450, brain.MONSTER_DIAGONAL, 0, 0, {
-      base_walk = 290,
-      base_attack = 720,
-      strength = 10,
-      touch_damage = 2,
-      speed = 1,
-      timing = 0,
-      distance = 50,
-      target = 1,
-      hitpoints = 4
-    })
+    local jcrap = make_guard(280, 450)
     jcrap:freeze()
     jcrap:move_stop(direction.NORTH_EAST, 400, true)
 

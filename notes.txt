@@ -4,6 +4,8 @@ Scripts to highlight:
 - Because choice menus are objects and conditions are proper boolean expressions,
   you can do much more advanced conditions for them, like *OR* instead of *AND*
   among others.
+- Code reduction techniques like `misc.initialize_sprite` and
+  `misc.create_sprite_initialized` and others.
 
 Things to point out:
 - Screenlock replaced by lock_screen(), unlock_screen() and is_screen_locked()

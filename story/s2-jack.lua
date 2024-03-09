@@ -1,8 +1,6 @@
 local aunt = include("s2-aunt")
 
 function main()
-  misc.preload_diagonal_seq(340)
-
   if global["s2-aunt"] > 2 then
     current_sprite.hitpoints = 50
   end
@@ -13,7 +11,7 @@ function main()
     pseq = 341,
     pframe = 1,
     brain = brain.SMART_PEOPLE
-  })
+  }, {{"d", 340}})
 end
 
 function talk()

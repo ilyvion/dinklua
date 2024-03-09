@@ -130,8 +130,6 @@ function talk()
 
   if choice_result == choice_valor then
     -- scene with Milder
-    misc.preload_diagonal_seq(400)
-
     cs:scene({
       {"w", 500},
       {"ss", "d", "Greetings men.  I bring stories of my adventures from the East."},
@@ -150,7 +148,7 @@ function talk()
       base_walk = 400,
       speed = 1,
       timing = 0,
-    })
+    }, {"d", 400})
     cs:add_participant("m", milder, "6")
 
     cs:scene({

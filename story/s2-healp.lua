@@ -25,7 +25,7 @@ function main()
     -- set starting pic
     pseq = 243,
     pframe = 1
-  })
+  }, {241, 243})
 
   mainloop()
 end

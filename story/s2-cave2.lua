@@ -3,8 +3,10 @@ local enemy = include("_enemy")
 function main()
   if global.caveguy == 5 then
     dink.script_attach(1000)
+    misc.preload_diagonal_seq(370)
     dink.preload_seq(375)
     dink.preload_seq(168)
+    dink.preload_seq(506)
     player:freeze()
 
     local dude = misc.create_sprite_initialized(551, 157, 0, 0, 0, {

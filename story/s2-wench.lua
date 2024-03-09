@@ -36,8 +36,6 @@ local function mainloop()
 end
 
 function main()
-  misc.preload_diagonal_seq(220)
-
   misc.initialize_sprite(current_sprite, {
     brain = brain.SMART_PEOPLE,
     base_walk = 220,
@@ -46,7 +44,7 @@ function main()
     -- set starting pic
     pseq = 223,
     pframe = 1
-  })
+  }, {{"d", 220}})
 
   mainloop()
 end

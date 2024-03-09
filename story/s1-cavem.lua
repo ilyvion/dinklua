@@ -7,8 +7,6 @@ function main()
   end
   -- fixed Pap's error here!!!
   
-  misc.preload_diagonal_seq(540)
-  misc.preload_diagonal_seq(530)
   misc.initialize_sprite(current_sprite, {
     distance = 50,
     base_attack = 540,
@@ -17,7 +15,7 @@ function main()
     touch_damage = 2,
     hitpoints = 35,
     exp = 100
-  })
+  }, {{"d", 540}, {"d", 530}})
   local mcrap = dink.get_editor_sprite(36).sprite
   if mcrap ~= nil then
     -- duck is still alive, lets have the monster target it for fun

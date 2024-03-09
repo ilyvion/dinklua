@@ -103,7 +103,19 @@ end
 
 function initialize_sprite(sprite, properties, preloads)
   for _, seq in pairs(preloads or {}) do
-    dink.preload_seq(seq)
+    if type(seq) == "number" then
+      dink.preload_seq(seq)
+    elseif type(seq) == "table" then
+      if seq[1] == "d" then
+        preload_diagonal_seq(seq[2])
+      elseif seq[1] == "c" then
+        preload_cardinal_seq(seq[2])
+      else
+        error("initialize_sprite only accepts 'c' or 'd' type preloads", 2)
+      end
+    else
+      error("initialize_sprite only accepts number or table for preloads", 2)
+    end
   end
   for prop, value in pairs(properties) do
     sprite[prop] = value
@@ -112,7 +124,10 @@ end
 
 function create_sprite_initialized(x, y, brain, seq, frame, properties, preloads)
   local sprite = dink.create_sprite(x, y, brain, seq, frame)
-  initialize_sprite(sprite, properties, preloads)
+  local success, result = pcall(initialize_sprite, sprite, properties, preloads)
+  if not success then
+    error(result, 2)
+  end
   return sprite
 end
 

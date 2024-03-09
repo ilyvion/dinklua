@@ -14,7 +14,7 @@ function main()
       -- set starting pic
       pseq = 371,
       pframe = 1
-    })
+    }, {{"d", 370}})
     
     local poop = misc.create_sprite_initialized(410, 250, 0, 0, 0, {
       brain = brain.NONE,
@@ -24,7 +24,7 @@ function main()
       -- set starting pic
       pseq = 297,
       pframe = 1
-    })
+    }, {{"d", 290}})
     
     local poop2 = misc.create_sprite_initialized(300, 175, 0, 0, 0, {
       brain = brain.NONE,
@@ -34,7 +34,7 @@ function main()
       -- set starting pic
       pseq = 293,
       pframe = 1
-    })
+    }, {{"d", 290}})
     
     dink.wait(500)
 

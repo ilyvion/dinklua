@@ -1,7 +1,6 @@
 local cs
 
 function main()
-  misc.preload_diagonal_seq(360)
   volatile.mother = current_sprite
   misc.initialize_sprite(current_sprite, {
     base_walk = 360,
@@ -11,7 +10,7 @@ function main()
     pseq = 361,
     pframe = 1,
     brain = brain.SMART_PEOPLE
-  })
+  }, {{"d", 360}})
 
   cs = cutscene.create_cutscene(400)
   cs:add_participant("d", player)

@@ -11,7 +11,7 @@ function main()
     pseq = 373,
     pframe = 1,
     dir = direction.SOUTH
-  })
+  }, {{"d", 370}})
   volatile.dude = dude
 
   local cs = cutscene.create_cutscene(300)

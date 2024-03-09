@@ -17,11 +17,7 @@ function main()
     touch_damage = 4,
     hitpoints = 20,
     target = player
-  }, {  
-    531, 533, 537, 539,
-    551, 553, 557, 559,
-    542, 544, 546, 548
-  })
+  }, {{"d", 530}, {"d", 550}, {"c", 540}})
 end
 
 function hit()

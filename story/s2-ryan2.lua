@@ -1,5 +1,4 @@
 function main()
-  misc.preload_diagonal_seq(370)
   misc.initialize_sprite(current_sprite, {
     base_walk = 370,
     speed = 2,
@@ -7,7 +6,7 @@ function main()
     -- set starting pic
     pseq = 373,
     pframe = 1
-  })
+  }, {{"d", 370}})
   -- Ok Go
   player:freeze()
   current_sprite:say_stop("`2Psst, over here")
