@@ -2,6 +2,7 @@ local cs
 
 function main()
   misc.preload_diagonal_seq(360)
+  volatile.mother = current_sprite
   misc.initialize_sprite(current_sprite, {
     base_walk = 360,
     speed = 1,
@@ -22,7 +23,7 @@ local choice_dirty     = choice_menu:add_choice("Ask Nadine why her house is suc
 local choice_find      = choice_menu:add_choice("Offer to find Nadine's girl", function() return global["s2-nad"] == 1 end)
 local choice_rude      = choice_menu:add_choice("Be rude to Nadine", function() return global["s2-nad"] == 1 end)
 local choice_fruitless = choice_menu:add_choice("Let her know exactly how fruitless your search has been thus far", function() return global["s2-nad"] == 2 end)
-local choice_doing     = choice_menu:add_choice("Ask Nadine how she and Mary are doing", global["s2-nad"] == 3)
+local choice_doing     = choice_menu:add_choice("Ask Nadine how she and Mary are doing", function() return global["s2-nad"] == 3 end)
 local choice_leave     = choice_menu:add_choice("Leave")
 
 function talk()

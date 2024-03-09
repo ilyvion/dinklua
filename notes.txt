@@ -13,3 +13,7 @@ Things to point out:
   function call in there somewhere, such as `say_stop` or `wait`.
 - Because of the `volatile` global, we can avoid needing weird "temporary"
   global variables like the `temp#hold` ones.
+
+Document:
+- The various '_'-prefixed scripts should be documented, at least the ones not
+  derived from DinkC, like _misc and _items.
