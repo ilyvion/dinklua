@@ -6,7 +6,6 @@ function main()
   cs:add_participant("w", current_sprite, "9")
 end
 
-
 function talk()
   if global.gobpass == 5 and global.mayor == 0 then
     current_sprite:say_stop("** FIXING BUG.. RESETTING GOBLIN VILLAGE **")

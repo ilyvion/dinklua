@@ -214,18 +214,25 @@ function check_has_free_items()
   end
 end
 
-function try_buy_item(cost, script, seq, frame)
-  if not check_has_free_items() then
-    return false
+REASON_NO_FREE_ITEMS = {_i="nfi"}
+REASON_NOT_ENOUGH_GOLD = {_i="neg"}
+function try_buy_item(cost, script, seq, frame, show_gold_dialog)
+  if show_gold_dialog == nil then
+    show_gold_dialog = true
   end
-  if global.gold < cost then 
-    misc.show_dialog("You don't have enough gold.")
-    return false
+  if not check_has_free_items() then
+    return false, REASON_NO_FREE_ITEMS
+  end
+  if global.gold < cost then
+    if show_gold_dialog then
+      misc.show_dialog("You don't have enough gold.")
+    end
+    return false, REASON_NOT_ENOUGH_GOLD
   end
 
   global.gold = global.gold - cost
   dink.add_item(script, seq, frame)
-  return true
+  return true, nil
 end
 
 function sell_item(cost, script)
