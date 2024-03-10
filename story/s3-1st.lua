@@ -12,7 +12,7 @@ function main()
   if global.story == 8 then
     -- Script for entering Sector 3
     local function spawn_evil(y)
-      return misc.create_sprite_initialized(-30, 130, 0, 0, 0, {
+      return misc.create_sprite_initialized(-30, y, 0, 0, 0, {
         brain = brain.NONE,
         base_walk = 300,
         speed = 1,
@@ -20,7 +20,7 @@ function main()
         -- set starting pic
         pseq = 303,
         pframe = 1
-      })
+      }, {{"d", 300}})
     end
 
     -- Spawn Stuff

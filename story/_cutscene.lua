@@ -301,6 +301,14 @@ function create_cutscene(default_wait, default_ih)
       local arg = {...}
       if command == "w" then
         self.wait_time = arg[1]
+      elseif command == "wn" then
+        local wait_time = self.wait_time
+        self.wait_time = arg[1]
+        self:wait()
+        self.wait_time = wait_time
+      elseif command == "ls" then
+        dink.lock_screen(true)
+        self:wait()
       elseif command == "ih" then
         self.ignore_hardness = arg[1]
       elseif command == "pmidi" then
