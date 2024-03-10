@@ -357,7 +357,7 @@ function create_cutscene(default_wait, default_ih)
         local do_wait
         for _, line in pairs(lines) do
           local actor = actors[current_actor]
-          local color
+          local color = nil
           if type(actor) == "string" then
             color = self.participants[actor].color
             actor = self.participants[actor].sprite
