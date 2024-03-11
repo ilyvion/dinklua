@@ -5,6 +5,7 @@ local gs = include("en-gs")
 main = gs.main
 hit = gs.hit
 talk = gs.talk
+attack = gs.attack
 
 function die()
   gs.die()

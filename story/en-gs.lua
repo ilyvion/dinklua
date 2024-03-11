@@ -1,5 +1,7 @@
 -- goblin with axe
 
+local enemy = include("_enemy")
+
 function main()
   misc.initialize_sprite(current_sprite, {
     brain = brain.SMART_PEOPLE,
