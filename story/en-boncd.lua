@@ -11,14 +11,6 @@ function main()
   end
 end
 
-function hit(enemy_sprite)
-  bonc.hit(enemy_sprite)
-end
-
-function die()
-  bonc.die()
-end
-
-function attack()
-  bonc.attack()
-end
+hit = bonc.hit
+die = bonc.die
+attack = bonc.attack

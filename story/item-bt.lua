@@ -3,10 +3,6 @@
 local items = include("_items")
 local fists = include("item-fst")
 
-function use()
-  fists.use()
-end
-
 function disarm()
   player:set_speed(3)
   player.frame_delay = 0
@@ -22,10 +18,6 @@ function arm()
   player.frame_delay = 30
 end
 
-function pickup()
-  fists.pickup()
-end
-
-function drop()
-  fists.drop()
-end
+use = fists.use
+pickup = fists.pickup
+drop = fists.drop
