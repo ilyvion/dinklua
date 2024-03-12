@@ -10,6 +10,10 @@ function damage()
   mcrap = mcrap - 35
   scrap.y = mcrap
 
+  if missile_target == nil then
+    return
+  end
+
   mcrap = missile_target.pseq
   scrap = missile_target.pframe
   local hold = missile_target.editor_sprite

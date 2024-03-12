@@ -13,15 +13,13 @@ function main()
 end
 
 function hit()
-  local rcrap = missile_source.pseq
+  local missile_pseq = missile_source.pseq
   local used_bow = false
   for i=1,3 do
     used_bow = used_bow or dink.compare_weapon("item-b"..i)
   end
-  dink.debug(""..rcrap)
-  -- TODO: this value of -1 feels wrong. Validate after being able to
-  -- buy the bow.
-  if rcrap == -1 and used_bow then
+  
+  if missile_pseq == 25 and used_bow then
     cs:command("say", "m", "See, now that pierced my lung! Ouch!")
   else
     cs:command("say", "m", "`1That hurts and all, but you could be doing much more damage with a bow!")
