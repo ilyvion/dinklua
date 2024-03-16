@@ -1,5 +1,8 @@
 -- item bow
 
+bonus_strength = 0
+bowlore_dividend = 3
+
 function use()
   dink.activate_bow()
   local mypower = dink.get_last_bow_power()
@@ -32,10 +35,14 @@ function use()
   if temp == 0 then temp = 1 end
   mypower = mypower * temp
 
-  if global.bowlore == 1 and dink.random(3, 1) == 1 then
+  if global.bowlore == 1 and dink.random(bowlore_dividend, 1) == 1 then
     mypower = mypower * 3
-    dink.playsound(44, 14050, 0, nil, false)
-    player:say("`4* POWER SHOT *")
+    if bowlore_dividend ~= 1 then
+      dink.playsound(44, 14050, 0, nil, false)
+      player:say("`4* POWER SHOT *")
+    else
+      dink.playsound(17, 8000, 0, nil, false)
+    end
   end
   junk.strength = mypower
 
@@ -49,10 +56,16 @@ function use()
 end
 
 function disarm()
+  if bonus_strength > 0 then
+    global.strength = global.strength - bonus_strength
+  end
   dink.kill_this_task()
 end
 
 function arm()
+  if bonus_strength > 0 then
+    global.strength = global.strength + bonus_strength
+  end
   player.attack_hit_sound = 0
   
   dink.init([[load_sequence_now graphics\dink\bow\walk\d-bw1- 71 43 30 84 -14 -10 14 10]])
