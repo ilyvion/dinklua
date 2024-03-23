@@ -67,7 +67,7 @@ function main()
   local dinklogo = dink.create_sprite(320, 240, brain.NONE, 196, 1)
 
   local truecolor = dink.get_truecolor()
-  if truecolor ~= 1 then
+  if not truecolor then
     dink.say_xy("`4Error - Lua version requires True color mode! Restart game with -truecolor argument.", 0, 390)
     dink.wait(1)
     dink.wait(10000)
