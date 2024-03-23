@@ -1,4 +1,6 @@
--- script for secret tree
+-- script for secret tree/rock
+
+local make = include("_make")
 
 args = nil
 
@@ -36,4 +38,38 @@ function touch()
   dink.script_attach(1000)
   misc.teleport(table.unpack(args))
   dink.kill_this_task()
+end
+
+-- script for secret rock
+
+function hit()
+  if args == nil then
+    error("args is nil. Forgot to set?")
+  end
+
+  local rcrap = missile_source:compare_script("dam-bomn")
+  if rcrap then
+    -- rock just got hit by a sprite with a script named dam-bomn, I'm gonna
+    -- guess it was the bomb.
+    local x,y = current_sprite.x, current_sprite.y + 1
+
+    local make_item, make_item_arg = table.unpack(args)
+    if make_item_arg == nil then
+      make[make_item](x, y)
+    else
+      make[make_item](x, y, make_item_arg)
+    end
+
+    --remove rocks hardness and sprite
+    current_sprite.hard = true
+    current_sprite:draw_hard()
+    current_sprite.active = false
+    dink.playsound(43, 22050, 0, nil, false)
+
+    -- kill this item so it doesn't show up again for this player
+    local hold = current_sprite.editor_sprite
+    if hold ~= nil then
+      hold.type = editor_type.KILL_COMPLETELY
+    end
+  end
 end

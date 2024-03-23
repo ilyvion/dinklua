@@ -1,8 +1,8 @@
 Scripts to highlight:
 - Cutscene scripts -- Using _cutscene.lua (Examples: s1-wiz, s2-cave2)
   In particular, explain how {"w", #} works, because it's not necessarily
-  intuitive. TODO: Consider introducing a "wn" (wait now) command to wait
-  a set amount once.
+  intuitive. There's also a "wn" (wait now) command to wait a set amount
+  once.
 - Shop scripts -- Using _items.lua (Examples: s2-healp, s2-out)
 - Because choice menus are objects and conditions are proper boolean expressions,
   you can do much more advanced conditions for them, like *OR* instead of *AND*
@@ -18,6 +18,8 @@ Things to point out:
   function call in there somewhere, such as `say_stop` or `wait`.
 - Because of the `volatile` global, we can avoid needing weird "temporary"
   global variables like the `temp#hold` ones.
+- A lot of foo(sprite, etc.) functions have been replaced with sprite:foo(etc.).
+  Make a list?
 
 Document:
 - The various '_'-prefixed scripts should be documented, at least the ones not
